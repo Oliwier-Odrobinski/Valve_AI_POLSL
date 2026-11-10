@@ -1,0 +1,43 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |				
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  12                                	
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    format      ascii;
+    class       dictionary;
+    object      extrudeMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+constructFrom patch;
+
+sourceCase ".";
+sourcePatches (zMinus);
+
+exposedPatchName zPlus;
+
+flipNormals true;
+
+extrudeModel        wedge;
+
+nLayers             1;
+axisPt (0 0 0);
+axis (1 0 0);
+angle 2;
+wedgeCoeffs
+{
+axisPt (0 0 0);
+axis (1 0 0);
+angle 2;
+}
+
+mergeFaces false;  
+
+// Merge small edges. Fraction of bounding box.
+//mergeTol 0;
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
